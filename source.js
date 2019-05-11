@@ -53,7 +53,7 @@ window.setInterval(function() {
 	        		alert('end');
 	        	}
 	        };
-	        //添加暂停事件
+	        //添加暂停事件,视频播放完毕后会调用该事件
 			videojs.getPlayers().player.on("pause",
 			    function() {
 					window.countRun += 1;
