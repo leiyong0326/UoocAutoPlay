@@ -1,4 +1,16 @@
+// ==UserScript==
+// @name 优课--二倍速自动播放
+// @namespace Violentmonkey Scripts
+// @version      2019.05.17
+// @author       yong.lei
+// @match http://www.uooconline.com/home/learn/index#*
+// @description  实现自动二倍速挂机看视频,允许切换到后台.不支持自动做题.使用方式:进入课程视频页就会,
+// @grant none
+// ==/UserScript==
 
+
+//异常情况唤起QQ聊天窗口,可填写好友的QQ号码,默认为电信客服
+var qq = 800010000;
 (function(window,$){
 window.countRun = 0;
 window.countInit = 0;
@@ -25,13 +37,16 @@ window.setInterval(function() {
 	    			console.log(Date()+'->播放下一个');
 		            var ng_scope = $('div[class="basic ng-scope"]');
 		            if (ng_scope.length > 0) {
-		            	if (ng_scope.find('span[ng-if="source.type == 10"]')>0) {
-			                ng_scope.first().trigger('click');
+		            	var first = ng_scope.first();
+		            	if (first.find('span[ng-if="source.type == 10"]').length>0) {
+			                first.trigger('click');
 			                funObj.speed();//调用二倍
-		            	}else if (ng_scope.find('span[ng-if="source.type == 80"]')>0) {
+		            	}else if (first.find('span[ng-if="source.type == 80"]').length>0) {
+                            funObj.error();
 			                alert("请完成测验");
 		            	}else{
-		            		alert("fail");
+                            funObj.error();
+		            		alert("error,请重试.");
 		            	}
 		            }else{
 		            	funObj.uncomplete();//打开下一个章节
@@ -39,6 +54,12 @@ window.setInterval(function() {
 	                
 	            },window.wait);
 	        };
+            funObj.error = function(){
+                if(qq){
+                  var url = 'tencent://message/?uin='+qq;
+                  window.open(url);
+                 }
+            };
 	        funObj.uncomplete = function(){
 	        	window.setTimeout(function() {
 	    			console.log(Date()+'->下一个子节点');
@@ -74,3 +95,4 @@ window.setInterval(function() {
 	}
 },window.wait);
 })(window,window.jQuery);
+
