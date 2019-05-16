@@ -1,3 +1,5 @@
+
+(function(window,$){
 window.countRun = 0;
 window.countInit = 0;
 window.wait = 2000;
@@ -23,8 +25,14 @@ window.setInterval(function() {
 	    			console.log(Date()+'->播放下一个');
 		            var ng_scope = $('div[class="basic ng-scope"]');
 		            if (ng_scope.length > 0) {
-		                ng_scope.first().trigger('click');
-		                funObj.speed();//调用二倍
+		            	if (ng_scope.find('span[ng-if="source.type == 10"]')>0) {
+			                ng_scope.first().trigger('click');
+			                funObj.speed();//调用二倍
+		            	}else if (ng_scope.find('span[ng-if="source.type == 80"]')>0) {
+			                alert("请完成测验");
+		            	}else{
+		            		alert("fail");
+		            	}
 		            }else{
 		            	funObj.uncomplete();//打开下一个章节
 		            }
@@ -53,7 +61,7 @@ window.setInterval(function() {
 	        		alert('end');
 	        	}
 	        };
-	        //添加暂停事件,视频播放完毕后会调用该事件
+	        //添加暂停事件
 			videojs.getPlayers().player.on("pause",
 			    function() {
 					window.countRun += 1;
@@ -65,3 +73,4 @@ window.setInterval(function() {
 		}
 	}
 },window.wait);
+})(window,window.jQuery);
