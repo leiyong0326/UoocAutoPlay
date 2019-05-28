@@ -5,3 +5,5 @@ Uooc课程自动播放,仅支持自动二倍速播放,自动播放未学习章�
 3. 在watch中添加AutoPlay.js中的代码段回车或在其他位置执行该脚本(为方便粘帖已压缩)
 
 源码请看source.js
+
+暴力猴等脚本安装地址:https://greasyfork.org/zh-CN/scripts/383130-优课-二倍速自动播放
