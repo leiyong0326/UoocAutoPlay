@@ -3,7 +3,7 @@
 // @namespace Violentmonkey Scripts
 // @version      2019.05.17
 // @author       yong.lei
-// @match http://www.uooconline.com/home/learn/index#*
+// @match *://www.uooconline.com/home/learn/index#*
 // @description  实现自动二倍速挂机看视频,允许切换到后台.不支持自动做题.使用方式:进入课程视频页就会,
 // @grant none
 // ==/UserScript==
