@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name 优课--二倍速自动播放
 // @namespace Violentmonkey Scripts
-// @version      2020.04.05
+// @version      2020.04.06
 // @author       yong.lei
 // @match *://www.uooconline.com/home/learn/index#*
-// @description 实现自动二倍速挂机看视频,允许切换到后台.不支持自动做题.使用方式:点击未读章节视频后会自动启动二倍速观看.如嫌麻烦,可以随便点击一个视频并暂停播放即可触发自动寻找未读章节脚本.
-// @description 脚本寻找下一未观看章节的触发方式为视频暂停事件,进入学习页不会直接触发,一定要进到视频页.,需要做题或其它未知情况出现时,将会发起QQ聊天窗口,挂着QQ挂机更合适哦
+// @description 实现自动二倍速挂机看视频,允许切换到后台.不支持自动做题.
 // @grant none
 // ==/UserScript==
 
@@ -104,12 +103,12 @@ funObj.uncomplete = function(){
 };
 funObj.chapterUncomplete = function(){
 	console.log(Date()+'->下一个章节');
-	var chapter_uncomplete = $('div[class="basic chapter uncomplete"]');
+	var chapter_uncomplete = $('div[class="basic chapter active uncomplete"]');
 	if (chapter_uncomplete.length > 0) {
 		chapter_uncomplete.first().trigger('click');
 		funObj.uncomplete();//打开子节点
 	}else{
-		var chapter_uncomplete2 = $('div[class="basic chapter active uncomplete"]');
+		var chapter_uncomplete2 = $('div[class="basic chapter uncomplete"]');
 		if (chapter_uncomplete2.length > 0) {
 			chapter_uncomplete2.first().trigger('click');
 			funObj.uncomplete();//打开子节点
