@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name 优课--二倍速自动播放
 // @namespace Violentmonkey Scripts
-// @version      2019.11.07
+// @version      2020.04.05
 // @author       yong.lei
 // @match *://www.uooconline.com/home/learn/index#*
 // @description 实现自动二倍速挂机看视频,允许切换到后台.不支持自动做题.使用方式:点击未读章节视频后会自动启动二倍速观看.如嫌麻烦,可以随便点击一个视频并暂停播放即可触发自动寻找未读章节脚本.
@@ -109,7 +109,13 @@ funObj.chapterUncomplete = function(){
 		chapter_uncomplete.first().trigger('click');
 		funObj.uncomplete();//打开子节点
 	}else{
-		alert('end');
+		var chapter_uncomplete2 = $('div[class="basic chapter active uncomplete"]');
+		if (chapter_uncomplete2.length > 0) {
+			chapter_uncomplete2.first().trigger('click');
+			funObj.uncomplete();//打开子节点
+		}else{
+			alert('end');
+		}
 	}
 };
 })(window,window.jQuery);
